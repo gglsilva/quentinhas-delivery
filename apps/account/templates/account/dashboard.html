@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title%}
+    Dashboard
+{% endblock title%}
+
+{% block content %}
+    <style>
+        .navbar{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: rgba(19, 19, 19, 0.3);
+        }
+        .navbar-brand{
+            text-decoration: none;
+            color: white;
+            font-size: large;
+            font-weight: bolder;
+        }
+        .navbar-menu, .navbar-nav{
+            display: flex;
+            flex-direction: row;
+        }
+        .navbar-nav{
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+        ul{
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            font-size: medium;
+        }
+        .navbar-menu li{
+            color: white;
+        }
+        .navbar-menu a{
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+    <header>
+        <nav class="navbar">
+            <a href="" class="navbar-brand">
+                <h1>Dashboard</h1>
+            </a>
+            <div class="navbar-menu">
+                <ul class="navbar-nav">
+                    <li class="navbar-item">
+                        <a class="nav-link" href="">Olá, <span>{{user.first_name}}</span></a>
+                    </li>
+                    <li class="navbar-item">
+                        <i class="bi bi-person-circle"></i>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="cardapio">
+        <a href="{% url 'produto:cardapio' %}">Cardapio do dia</a>
+    </div>
+    
+{% endblock content %}
