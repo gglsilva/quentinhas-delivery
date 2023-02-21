@@ -1,11 +1,16 @@
-{% extends "shop/base.html" %},
+{% extends "base.html" %}
+{% load static %}
+    
+{% block head %}
+  <link rel="stylesheet" href="{% static 'shop/css/cart.css' %}">
+{% endblock head%}
 
 {% block title %}
-    Thank you
+  Obrigado
 {% endblock %}
 
 {% block content %}
-    <h1>Thank you</h1>
-    <p>Your order has been successfully completed. Your order number is
+    <h1>Obrigado</h1>
+    <p>Seu pedido foi concluído com êxito. O número do seu pedido é
     <strong>{{ order.id }}</strong>.</p>
 {% endblock %}

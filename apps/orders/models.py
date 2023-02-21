@@ -9,7 +9,10 @@ class Order(models.Model):
         related_name='Cliente',
         on_delete=models.CASCADE
     )
-    note = models.TextField()
+    note = models.TextField(
+        blank=True,
+        null=True
+    )
     created = models.DateTimeField(
         auto_now_add=True
     )

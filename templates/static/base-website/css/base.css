@@ -5,8 +5,12 @@ body {
     padding:0;
     font-family:helvetica, sans-serif;
     background: #f99b0e;
+    background-image: url('/static/base-website/img/bg-primary.jpg');
+    background-size: cover;
+    background-repeat: no-repeat, repeat;
 }
 
 h1, h2, h3, h4, h5 , h6 {
     font-family: 'Ubuntu', sans-serif; font-weight:normal;
 }
+

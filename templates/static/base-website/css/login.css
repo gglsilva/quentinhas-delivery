@@ -2,8 +2,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 80vh;
+  height: 100vh;
   color: #000;
+}
+#logo-company {
+  width:75px;
 }
 .card {
   background-color: rgba(240, 240, 240, 0.4);
@@ -51,15 +54,15 @@ a {
 }
 
 #register {
-  color: white;
+  color: #ff5e00;
 }
 #register:hover {
-  color: #ff5e00;
+  color: #f99b0e;
 }
 .btn-submit {
   margin-top: 0.5em;
   text-align: center;
-  color: #f7f4f4;
+  color: #efefef;
   font-weight: bold;
   text-transform: uppercase;
   background-color: #ff5e00;

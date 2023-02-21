@@ -9,23 +9,28 @@
 
 {% block content %}
     <div class="shop-content">
-        <div id="header">
-            <a href="/shop/" class="logo">Quentinhas Da Lu</a>
-        </div>
+        
+        <a id="header" href="/shop/" >
+            <img id="logo-company" src="{% static 'base-website/img/logo-quentinhas-da-lu.png' %}" alt="">
+            <span id="logo-text">Quentinhas Da Lu</span>
+        </a>
+        
         <div id="subheader">
             <div class="cart">
                 {% with total_items=cart|length %}
                     {% if total_items > 0 %}
                         Seu Carrinho:
                         <a href="{% url "cart:cart_detail" %}">
-                            {{ total_items }} item{{ total_items|pluralize }}
-                            <!-- ${{ cart.get_total_price }} -->
+                            <span style="color: #e5e7eb">{{ total_items }} item{{ total_items|pluralize }}</span>
+                            <!-- ${ cart.get_total_price }} -->
                         </a>
                     {% else %}
                         Seu carrinho está vazio.
                     {% endif %}
+                    
                 {% endwith %}
             </div>
+            <i class="fa-sharp fa-solid fa-cart-shopping"></i>
         </div>
     </div>
     <div id="shop">

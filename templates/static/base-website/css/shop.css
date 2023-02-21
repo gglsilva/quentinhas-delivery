@@ -1,10 +1,15 @@
+body {
+    background-image: none;
+    background-color: #e5e7eb;
+}
+
 a {
     text-decoration:none;
     color:#252424;;
 }
 
 a:hover {
-    color:#ffcd71;
+    color:#ff5e00;
 }
 
 a.button, input[type="submit"] {
@@ -18,17 +23,35 @@ a.button, input[type="submit"] {
 
 a.button.light {
     color:#666;
-    background:#ededed;
+    background:#fff;
 }
 {% comment %} Header {% endcomment %}
 .shop-content {
     display:flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     margin: 0;
-    background-color: white;
-    padding: 1em;   
-    border-bottom: 4px solid #ffcd71;
+    background-color: #fb923c;
+    padding: .5em 1em .5em 1em;   
+    border-bottom: 4px solid #9a3412;
+}
+#header {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+#logo-company{
+    width:55px;
+}
+#logo-text {
+    font-size:24px;
+    margin-top: 5px;
+    color: #efefef;
+    font-weight: 900;
+}
+.cart a {
+    text-color: #efefef;
 }
 {% comment %} Content {% endcomment %}
 #content {
@@ -38,8 +61,11 @@ a.button.light {
 
 #sidebar {
     width:220px;
-    padding:30px 20px 0 1em;
+    padding:15px 20px 15px 1em;
     float:left;
+    background-color: #fff;
+    border-radius: 4px;
+    margin: 10px 10px 0 0;
 }
 
 #sidebar ul{
@@ -58,23 +84,26 @@ a.button.light {
 }
 
 #sidebar ul li.selected {
-    background:#ededed;
+    background:#ff5e00;
     border-radius:4px;
 }
 
 #sidebar ul li.selected a {
-    color:#ff5e00;
+    color:#fff;
 }
 
 #main {
     float:left;
-    width: 96%;
-    margin-right:-220px;
+    width: 75.8%;
     overflow:hidden;
+    background-color: #fff;
+    border-radius: 4px;
+    margin: 10px -220px 0 0;
+    padding: 0 0 0 1em;
 }
 
 .product-list .item {
-    width:25%;
+    width:31%;
     padding:10px 20px 10px 0;
     float:left;
     text-align:center;
