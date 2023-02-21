@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Quentinhas Da Lu{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'base-website/css/shop.css' %}">
+{% endblock head%}
+
+{% block content %}
+    <div class="shop-content">
+        <div id="header">
+            <a href="/shop/" class="logo">Quentinhas Da Lu</a>
+        </div>
+        <div id="subheader">
+            <div class="cart">
+                {% with total_items=cart|length %}
+                    {% if total_items > 0 %}
+                        Seu Carrinho:
+                        <a href="{% url "cart:cart_detail" %}">
+                            {{ total_items }} item{{ total_items|pluralize }}
+                            <!-- ${{ cart.get_total_price }} -->
+                        </a>
+                    {% else %}
+                        Seu carrinho está vazio.
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+    <div id="shop">
+        {% block shop %}
+        {% endblock shop%}
+    </div>
+{% endblock %}

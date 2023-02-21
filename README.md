@@ -1,26 +1,9 @@
-# boilerplate
+## run rabbitmq with docker
 
-## Create virtual env
-- virtualenv .venv
+> docker run --rm -it --hostname my-rabbit -p 15672:15672 -p 5672:5672 rabbitmq:3-management
 
-## Activate .venv
-- souce .venv/bin/activate
+## run celery
+celery -A config worker -Q celery
 
-## install requirements
-- pip install -r requirements.txt
-
-## Install the git hook scripts
-- pre-commit install
-
-## create .env
-- python contrib/env_gen.py
-
-## Runserver
-- python manage.py runserver
-
-## Create apps
-- mkdir ./apps/appname
-- python manage.py startapp appname ./apps/appname
-
-
-## Referencias
+## run flower
+celery -A config flower

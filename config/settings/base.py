@@ -15,12 +15,20 @@ from decouple import config
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
-# ==============================================================================
-# CORE SETTINGS
-# ==============================================================================
+# ASSETS_MEDIA_DIR points to the top level directory (one directory up from BASE_DIR)
+# assets, media, database, and venv will be located in this directory
+ASSETS_MEDIA_DIR = os.path.abspath(os.path.join(BASE_DIR, '.'))
+
+# APPS_DIR points to the core package (project/src/apps).
+# All custom apps and newly created apps will be located in this directory.
+APPS_DIR = os.path.join(BASE_DIR, 'apps')
+
+
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY')
@@ -39,27 +47,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # My Apps
     'apps.core',
-    'apps.account',
-    'apps.pedido',
-    'apps.produto',
+    'apps.account.apps.AccountConfig',
+    'apps.shop.apps.ShopConfig',
+    'apps.cart.apps.CartConfig',
+    'apps.orders.apps.OrdersConfig',
     # 3th party apps
-    'debug_toolbar',
     'crispy_forms',
+    'crispy_bootstrap5',
+    'debug_toolbar',
 ]
-
-INTERNAL_IPS = [
-    # ...
-    '127.0.0.1',
-    # ...
-]
-
-ROOT_URLCONF = 'config.urls'
-WSGI_APPLICATION = 'config.wsgi.application'
-
-
-# ==============================================================================
-# MIDDLEWARE SETTINGS
-# ==============================================================================
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -72,15 +68,18 @@ MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
+INTERNAL_IPS = [
+    # ...
+    '127.0.0.1',
+    # ...
+]
 
-# ==============================================================================
-# TEMPLATES SETTINGS
-# ==============================================================================
+ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -88,17 +87,18 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'apps.cart.context_processors.cart',
             ],
         },
     },
 ]
 
+WSGI_APPLICATION = 'config.wsgi.application'
 
 
+# Database
+# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# ==============================================================================
-# DATABASES SETTINGS
-# ==============================================================================
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -107,9 +107,8 @@ DATABASES = {
 }
 
 
-# ==============================================================================
-# AUTHENTICATION AND AUTHORIZATION SETTINGS
-# ==============================================================================
+# Password validation
+# https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -127,9 +126,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# ==============================================================================
-# I18N AND L10N SETTINGS
-# ==============================================================================
+# Internationalization
+# https://docs.djangoproject.com/en/3.2/topics/i18n/
 
 LANGUAGE_CODE = 'pt-br'
 
@@ -142,22 +140,29 @@ USE_L10N = True
 USE_TZ = True
 
 
-# ==============================================================================
-# STATIC FILES SETTINGS
-# ==============================================================================
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
+STATICFILES_DIRS = ('templates/static',)
+STATIC_ROOT = os.path.join('static')
 
-# ==============================================================================
-# LOGIN REDIRECT SETTINGS
-# ==============================================================================
-LOGIN_REDIRECT_URL = 'account:dashboard'
-LOGIN_URL = 'login'
-#LOGOUT_URL = 'logout'
+# Media files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(ASSETS_MEDIA_DIR, 'media')  # project/media
 
-# ==============================================================================
-# MEDIA FILES SETTINGS
-# ==============================================================================
+LOGIN_REDIRECT_URL = 'shop:product_list'
+LOGIN_URL = 'account:login'
 
+# Default primary key field type
+# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Chave que armazena o carrinho na seção do usuário
+CART_SESSION_ID = 'cart'
+
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
