@@ -1,0 +1,141 @@
+@import url(//fonts.googleapis.com/css?family=Ubuntu);
+
+body {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 1 100vw;
+    justify-content: center;
+    margin:0;
+    padding:0;
+    background: #f99b0e;
+    {% comment %} background-image: url('/static/base/img/bg-primary.jpg'); {% endcomment %}
+    background-size: cover;
+    background-position: center;
+    background-repeat:no-repeat;
+}
+
+h1, h2, h3, h4, h5 , h6, a, span {
+    font-family: 'Ubuntu', sans-serif; font-weight:normal;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    max-width: 90vw;
+    max-height: 95vh;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+}
+{% comment %} Navbar {% endcomment %}
+.header {
+    display: flex;
+    flex: 1 1 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px 0 30px; 
+    background-color: #FF7A48;
+    border-bottom: 4px solid #151F30;
+}
+
+.header #logo {
+    display: flex;
+    flex: 0 1 200px;
+	align-items: center;
+    text-decoration: none;
+}
+
+.header a {
+    color: white;
+}
+
+#logo-img{
+    width:60px;
+    height: auto;
+}
+
+#logo-text{
+    margin: 0 0 0 10px;
+    font-size:16px;
+    font-weight: 900;
+}
+
+#menu {
+    display:flex:
+    align-items: center;
+}
+
+#menu-cart{
+    margin: 0 20px 0 0;
+    text-decoration:none;
+}
+
+
+{% comment %} Main Content {% endcomment %}
+.main {
+    display: flex;
+}
+
+#main-shop {
+    display: flex;
+    flex: 20 1 500px;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+
+    margin: 0 10px 10px 0;
+}
+
+#sidebar {
+    display: flex;
+    flex: 1 1 200px;
+    flex-direction: column;
+    background: #F2d;
+    padding: 10px;
+    {% comment %} margin-rigth: 20px; {% endcomment %}
+}
+
+
+
+
+
+
+
+@media(max-width: 768px){
+    #content {
+        max-width: 100vw;
+        max-height: 100vh;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .header {
+        padding: 0 10px 0 10px;
+        background-color: #151F30;
+        border-bottom: 4px solid #FF7A48;
+    }
+}
+
+{% comment %} Width 360px {% endcomment %}
+@media(max-width: 360px){
+    #content {
+        max-width: 100vw;
+        max-height: 100vh;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .header {
+        padding: 0 10px 0 10px;
+        background-color: #151F30;
+        border-bottom: 4px solid #FF7A48;
+    }
+    #logo-text {
+        display: none;
+    }
+}

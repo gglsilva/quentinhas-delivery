@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Quentinhas Da Lu{% endblock %}
+
+{% block content %}
+    <div class="header">
+        <a href="#" id="logo">
+            <img id="logo-img" src="{% static 'base/img/logo-quentinhas-da-lu.png' %}" 
+            alt=""
+            >
+            <span id="logo-text">Quentinhas da Lu</span> 
+        </a>
+		<!-- Agrupa links de navegação no site. -->
+		<nav id="menu">
+			<a href="#" id="menu-cart">
+                <i class="fas fa-shopping-cart" id="shopping-cart"></i>
+                {% with total_items=cart|length %}
+                    {% if total_items > 0 %}
+                        <a href="{% url "cart:cart_detail" %}">
+                            <span>{{ total_items }}</span>
+                        </a>                        
+                    {% endif %}
+                {% endwith %}   
+            </a>
+			<a href="#" id="menu-dashboard">
+                <i class="fas fa-user"></i>
+            </a>
+		</nav>
+    </div>
+    <div class="main">
+        {% block shop %}
+        {% endblock shop%}
+    </div>
+{% endblock %}

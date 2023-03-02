@@ -1,5 +1,6 @@
-{% extends "shop/dash-shop.html" %}
+{% extends "shop/base_shop.html" %}
 {% load static %}
+
 
 {% block title %}
   {% if category %}{{ category.name }}{% else %}Produtos{% endif %}
@@ -19,22 +20,22 @@
       {% endfor %}
     </ul>
   </div>
-  <div id="main" class="product-list">
+  <div id="main-shop" class="product-list">
     <h1>{% if category %}{{ category.name }}{% else %}Produtos{% endif %}</h1>
     {% for product in products %}
-      <div class="item">
-        <a href="{{ product.get_absolute_url }}">
-          <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
-        </a>
-        <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
-        <br>
-        <form class="form-shop" action="{% url "cart:cart_add_list" product.id %}" method="post">
-          {{ cart_product_form }}
-          {% csrf_token %}
-          <input type="submit" value="Adicionar">
-        </form>
-        <!-- ${{ product.price }} -->
-      </div>
+    <div class="item">
+      <a href="{{ product.get_absolute_url }}">
+        <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
+      </a>
+      <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+      <br>
+      <form class="form-shop" action="{% url "cart:cart_add_list" product.id %}" method="post">
+        {{ cart_product_form }}
+        {% csrf_token %}
+        <input type="submit" value="Adicionar">
+      </form>
+      <!-- ${{ product.price }} -->
+    </div>
     {% endfor %}
   </div>
 {% endblock shop %}

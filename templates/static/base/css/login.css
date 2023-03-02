@@ -1,10 +1,8 @@
 .login {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  color: #000;
+  margin-top: 25vh;
 }
+
 #logo-company {
   width:75px;
 }
@@ -55,6 +53,7 @@ a {
 
 #register {
   color: #ff5e00;
+  text-decoration:none;
 }
 #register:hover {
   color: #f99b0e;

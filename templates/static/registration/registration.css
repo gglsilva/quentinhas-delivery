@@ -1,0 +1,19 @@
+@import url(//fonts.googleapis.com/css?family=Ubuntu);
+
+body {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 1 100vw;
+    justify-content: center;
+    margin:0;
+    padding:0;
+    background: #f99b0e;
+    background-image: url('/static/base/img/bg-primary.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat:no-repeat;
+}
+
+h1, h2, h3, h4, h5 , h6, a, span {
+    font-family: 'Ubuntu', sans-serif; font-weight:normal;
+}
