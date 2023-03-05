@@ -14,11 +14,11 @@
 		<!-- Agrupa links de navegação no site. -->
 		<nav id="menu">
 			<a href="#" id="menu-cart">
-                <i class="fas fa-shopping-cart" id="shopping-cart"></i>
                 {% with total_items=cart|length %}
                     {% if total_items > 0 %}
                         <a href="{% url "cart:cart_detail" %}">
-                            <span>{{ total_items }}</span>
+                            <i class="fas fa-shopping-cart" id="shopping-cart"></i>
+                            <span id="qtde-itens">{{ total_items }}</span>
                         </a>                        
                     {% endif %}
                 {% endwith %}   
@@ -32,4 +32,5 @@
         {% block shop %}
         {% endblock shop%}
     </div>
+    
 {% endblock %}
