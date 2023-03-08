@@ -9,27 +9,31 @@
 {% block shop %}
   <div id="sidebar">
     <h3 id="sidebar-title" >Categorias</h3>
-    <ul>
-      <li {% if not category %}class="selected"{% endif %}>
-        <a href="{% url "shop:product_list" %}">Todas</a>
-      </li>
-      {% for c in categories %}
-        <li {% if category.slug == c.slug %}class="selected"{% endif %}>
-          <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+    <nav id="nav-menu-sidebar">
+      <ul>
+        <li {% if not category %}class="selected"{% endif %}>
+          <a href="{% url "shop:product_list" %}">Todas</a>
         </li>
-      {% endfor %}
-    </ul>
+        {% for c in categories %}
+          <li {% if category.slug == c.slug %}class="selected"{% endif %}>
+            <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
   </div>
   <div id="main-shop" class="product-list">
-    <h1>{% if category %}{{ category.name }}{% else %}Produtos{% endif %}</h1>
-      <div class="item">
+    <div class="product-menu">
+      <h1 id="product-menu-title">{% if category %}{{ category.name }}{% else %}Produtos{% endif %}</h1>
+      <button id="openMenu">&#9776;</button>
+    </div>
+    <div class="item">
       {% for product in products %}
         <div class="product-cart">
-          <a href="{{ product.get_absolute_url }}">
+            <a href="{{ product.get_absolute_url }}">
             <img id="product-img" src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
           </a>
           <a class="product-name" href="{{ product.get_absolute_url }}">{{ product.name }}</a>
-          
           <form class="form-shop" action="{% url "cart:cart_add_list" product.id %}" method="post">
             {{ cart_product_form }}
             {% csrf_token %}
@@ -38,7 +42,6 @@
           <!-- ${{ product.price }} -->
         </div>
       {% endfor %}
-      </div>
+    </div>
   </div>
-  <s
 {% endblock shop %}

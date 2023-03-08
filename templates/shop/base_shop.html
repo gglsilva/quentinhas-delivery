@@ -23,14 +23,21 @@
                     {% endif %}
                 {% endwith %}   
             </a>
-			<a href="#" id="menu-dashboard">
-                <i class="fas fa-user"></i>
-            </a>
+            <div class="dropdown">
+                <a href="#" id="menu-dashboard">
+                    <i class="fas fa-user"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="{% url 'account:dashboard' %}">Dashboard</a>
+                    <a href="{% url 'account:logout' %}">Logout</a>
+                </div>
+            </div>			
 		</nav>
     </div>
     <div class="main">
         {% block shop %}
         {% endblock shop%}
     </div>
+    <script type="text/javascript" src="{% static 'base/js/script.js' %}"></script>
     
 {% endblock %}

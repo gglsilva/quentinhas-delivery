@@ -7,8 +7,7 @@ body {
     justify-content: center;
     margin:0;
     padding:0;
-    background: #f99b0e;
-    background-image: url('/static/base/img/bg-primary.jpg');
+    background: #e5e7eb;
     background-size: cover;
     background-position: center;
     background-repeat:no-repeat;
