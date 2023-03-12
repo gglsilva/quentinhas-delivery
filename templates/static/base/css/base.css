@@ -69,6 +69,14 @@ h1, h2, h3, h4, h5 , h6, a, span {
     text-decoration:none;
 }
 
+#menu p{
+    color: white;
+    margin-right: 10px;
+}
+#menu-dashboard {
+    display: flex;
+    align-items: center;
+}
 .dropdown-content {
     display: none;
     position: absolute;
@@ -99,6 +107,9 @@ h1, h2, h3, h4, h5 , h6, a, span {
     margin-right: 10px;
 }
 
+#menu-cart{
+    margin-left: 10px;
+}
  /* Main Content */
 .main {
     display: flex;

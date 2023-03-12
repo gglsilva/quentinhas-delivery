@@ -2,10 +2,71 @@
 {% load static %}
 
 {% block head %}
-   
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.3/datatables.min.css" rel="stylesheet"/>
 {% endblock head %}
 
 {% block content %}
-    
-    
+    <style> 
+        .sidebar {
+            background-color: #343a40;
+            overflow-y: auto;
+            overflow-x: hidden;
+            min-width: 16rem;
+            width: 16rem;
+            height: 100%;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+        }
+        .dash-main {
+            background-color: #343a40;
+            margin-left: 16rem;
+            overflow: hidden;
+            padding: 1.2rem;
+            min-height: 100vh;
+        }
+    </style>
+    <div class="sidebar"></div>
+    <div class="dash-main">
+
+        <table id="tabela-listar">
+            <thead>
+                <tr>
+                    <th>Cliente</th>
+                    <th>Data</th>
+                    <th>Produtos</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>{{ order.client }}</td>
+                    <td>{{ order.created }}</td>
+                    <td>{{ order.items.get_produt_quantity }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <!-- {% for order in orders %}
+            <ul>
+                <li>{{ order.client }} - {{ order.product }}</li>
+            </ul>
+            
+        {% endfor %} -->
+    </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.3/datatables.min.js"></script>
+    <script>
+        $(document).ready(function(){
+
+            $("#tabela-listar").DataTable();
+
+        });
+    </script>
 {% endblock %}

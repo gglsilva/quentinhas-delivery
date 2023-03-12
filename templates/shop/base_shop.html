@@ -13,7 +13,20 @@
         </a>
 		<!-- Agrupa links de navegação no site. -->
 		<nav id="menu">
-			<a href="#" id="menu-cart">
+            
+			
+            <div class="dropdown">
+                
+                <a href="#" id="menu-dashboard">
+                    <p>Olá, {{ user }}</p>
+                    <i class="fas fa-user"></i>
+                </a>
+                <div class="dropdown-content">
+                    <a href="{% url 'account:dashboard' %}">Dashboard</a>
+                    <a href="{% url 'account:logout' %}">Logout</a>
+                </div>
+            </div>	
+            <a href="#" id="menu-cart">
                 {% with total_items=cart|length %}
                     {% if total_items > 0 %}
                         <a href="{% url "cart:cart_detail" %}">
@@ -22,16 +35,7 @@
                         </a>                        
                     {% endif %}
                 {% endwith %}   
-            </a>
-            <div class="dropdown">
-                <a href="#" id="menu-dashboard">
-                    <i class="fas fa-user"></i>
-                </a>
-                <div class="dropdown-content">
-                    <a href="{% url 'account:dashboard' %}">Dashboard</a>
-                    <a href="{% url 'account:logout' %}">Logout</a>
-                </div>
-            </div>			
+            </a>		
 		</nav>
     </div>
     <div class="main">

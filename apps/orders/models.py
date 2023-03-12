@@ -80,3 +80,7 @@ class OrderItem(models.Model):
 
     def get_cost(self):
         return self.price * self.quantity
+
+    @property
+    def get_produt_quantity(self):
+        return f'{self.product.name} + {self.quantity}'

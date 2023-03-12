@@ -6,7 +6,7 @@ from apps.core.pages.views import Home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('core/', include('apps.core.pages.urls')),
+    path('core/', include('apps.core.pages.urls', namespace='core')),
     path('account/', include('apps.account.pages.urls', namespace='account')),
     path('cart/', include('apps.cart.pages.urls', namespace='cart')),
     path('orders/', include('apps.orders.pages.urls', namespace='orders')),
