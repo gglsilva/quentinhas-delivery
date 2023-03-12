@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block head %}
   <link rel="stylesheet" href="{% static 'shop/css/cart.css' %}">
 {% endblock head%}
@@ -9,23 +10,56 @@
 {% endblock title %}
 
 {% block content %}
-    <h1>Checkout</h1>
+    <style>
+        .checkout-title{
+            color: #1f2937;
+            font-size: 32px;
+            font-weight: bolder;
+        }
+        #order-confirm{
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: space-around;
+            background-color: white;
+        }
+        .order-info{
+            display: flex;
+            flex-direction: column;
+            margin: 20px;
+        }
+        .order-form{
+            display: flex;
+            flex-direction: column;
+            margin: 20px;
+        }
+        #id_Observação{
+            margin-top: 10px;
+        }
+        
 
-    <div class="order-info">
-        <h3>Seu pedido</h3>
-        <ul>
-            {% for item in cart %}
-            <li>
-                {{ item.quantity }}x {{ item.product.name }}
-                <!-- <span>${{ item.total_price }}</span> -->
-            </li>
-            {% endfor %}
-        </ul>
-        <!-- <p>Total: ${{ cart.get_total_price }}</p> -->
+
+    </style>
+
+    <h1 class="checkout-title">Checkout</h1>
+
+    <div id="order-confirm">
+        <div class="order-info">
+            <h3 id="order-info-title">Seu pedido</h3>
+            <ul>
+                {% for item in cart %}
+                <li>
+                    {{ item.quantity }}x {{ item.product.name }}
+                    <!-- <span>${{ item.total_price }}</span> -->
+                </li>
+                {% endfor %}
+            </ul>
+            <!-- <p>Total: ${{ cart.get_total_price }}</p> -->
+        </div>
+        <form action="/orders/create/" method="post" class="order-form">
+            {{ form }}
+            <p><input type="submit" value="Fazer Pedido"></p>
+            {% csrf_token %}
+        </form>
     </div>
-    <form method="post" class="order-form">
-        {{ form.as_p }}
-        <p><input type="submit" value="Fazer Pedido"></p>
-        {% csrf_token %}
-    </form>
 {% endblock content %}

@@ -3,6 +3,7 @@ from django.views.decorators.http import require_POST
 #rom shop.models import Product
 from apps.shop.models import Product 
 from ..forms import CartAddProductForm, CardAddProductInlistForm
+from apps.orders.forms import OrderCreateForm
 from ..cart import Cart
 
 
@@ -40,11 +41,22 @@ def cart_remove(request, product_id):
     return redirect('cart:cart_detail')
 
 
+# def cart_detail(request):
+#     cart = Cart(request)
+#     for item in cart:
+#         item['update_quantity_form'] = CartAddProductForm(initial={
+#                                         'quantity': item['quantity'],
+#                                         'override': True})
+
+#     return render(request, 'cart/detail.html', {'cart': cart})
+
 def cart_detail(request):
     cart = Cart(request)
+    form = OrderCreateForm()
     for item in cart:
         item['update_quantity_form'] = CartAddProductForm(initial={
                                         'quantity': item['quantity'],
                                         'override': True})
 
-    return render(request, 'cart/detail.html', {'cart': cart})
+    return render(request, 'orders/order/create.html', {'cart': cart,
+                                                        'form': form})

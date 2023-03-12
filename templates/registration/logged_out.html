@@ -3,9 +3,39 @@
 {% block title %}Logged out{% endblock %}
 
 {% block content %}
-  <h1>Logged out</h1>
-  <p>
-    You have been successfully logged out.
-    You can <a href="{% url "account:login" %}">log-in again</a>.
-  </p>
+  <style>
+    .logged-out{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 15%;
+    }
+    .logged-out h1{
+      font-size: 64px;
+      font-weight: bolder;
+    }
+    .logged-out p{
+      font-size: 20px;
+      color: #222;
+    }
+    .logged-out a {
+      color:  #F24405;
+      text-decoration: none;
+    }
+    .gradient {
+      background: linear-gradient(to right, rgb(252, 74, 26), rgb(247, 183, 51));
+      background-clip: text;
+      -webkit-background-clip: text;
+  
+      /* Adicionado: */
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+  <div class="logged-out">
+    <h1 class="gradient">Logged out</h1>
+    <p>
+      Você foi desconectado com sucesso.
+      Você pode fazer <a href="{% url "account:login" %}">log-in</a> novamente!.
+    </p>
+  </div>
 {% endblock %}

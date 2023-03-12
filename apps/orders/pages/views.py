@@ -32,10 +32,17 @@ from apps.orders.tasks import order_created
 
 def order_create(request):
     cart = Cart(request)
+    user = request.user
+    
+    print(user)
     if request.method == 'POST':
-        form = OrderCreateForm(request.POST)
-        if form.is_valid():
-            order = form.save()
+        if request.user.is_authenticated:
+            # order['client'] = user
+            # order['node'] = request.POST.get('note')
+            order = Order.objects.create(client=user.profile,
+                                        note=request.POST.get('Observerção'))
+        # if form.is_valid():
+            # order = form.save()
             for item in cart:
                 OrderItem.objects.create(order=order,
                                          product=item['product'],
