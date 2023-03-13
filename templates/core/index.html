@@ -45,7 +45,7 @@
                 <tr>
                     <td>{{ order.client }}</td>
                     <td>{{ order.created }}</td>
-                    <td>{{ order.items.get_produt_quantity }}</td>
+                    <td>{{ order.get_product_for_order }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
