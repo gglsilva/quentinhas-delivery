@@ -4,7 +4,8 @@ from . import views
 app_name = 'account'
 
 urlpatterns = [
-    path('dashboard/', views.dashboard, name='dashboard'),
+    # path('dashboard/', views.dashboard, name='dashboard'),
     path('', include('django.contrib.auth.urls')),
     path('register/', views.register, name='register'),
+    path('edit/', views.edit, name='edit'),
 ]

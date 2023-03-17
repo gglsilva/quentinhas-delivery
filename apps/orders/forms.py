@@ -19,6 +19,6 @@ from .models import Order
         
 class OrderCreateForm(forms.Form):
     cliente = forms.CharField(widget=forms.HiddenInput)
-    Observação = forms.CharField(widget=forms.Textarea())
+    Observação = forms.CharField(required=False, widget=forms.Textarea())
     
         

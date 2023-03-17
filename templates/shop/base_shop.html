@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load thumbnail %}
 
 {% block title %}Quentinhas Da Lu{% endblock %}
 
@@ -13,16 +14,23 @@
         </a>
 		<!-- Agrupa links de navegação no site. -->
 		<nav id="menu">
-            
-			
             <div class="dropdown">
-                
                 <a href="#" id="menu-dashboard">
                     <p>Olá, {{ user }}</p>
-                    <i class="fas fa-user"></i>
+                    {% if user.profile.photo %}
+                        <div id="profile-photo">
+                            <img  src="{% thumbnail user.profile.photo 30x30 %}" alt="">
+                        </div>
+                    {% else %}    
+                        <i class="fas fa-user"></i>
+                    {% endif %}
                 </a>
                 <div class="dropdown-content">
-                    <a href="{% url 'account:dashboard' %}">Dashboard</a>
+                    {% if user.is_staff %}
+                    <a href="{% url 'core:report_day' %}">Administração</a>
+                    {% endif %}
+                    <a href="{% url 'account:edit' %}">Editar Perfil</a>
+                    <a href="{% url 'account:password_change' %}">Redefinir Senha</a>
                     <a href="{% url 'account:logout' %}">Logout</a>
                 </div>
             </div>	

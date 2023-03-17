@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Edite sua conta{% endblock %}
+
+{% block content %}
+    
+    <div id="edit-profile">
+        <h1 class="gradient">Edite sua conta</h1>
+        <p>Você pode editar sua conta usando o seguinte formulário:</p>
+        <form class="form-edit"method="post" enctype="multipart/form-data">
+            {{ user_form|crispy }}
+            {{ profile_form|crispy }}
+            {% csrf_token %}
+            <p><input type="submit" value="Salvar modificação"></p>
+        </form>
+    </div>
+{% endblock %}

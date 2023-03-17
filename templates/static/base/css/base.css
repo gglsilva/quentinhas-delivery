@@ -77,6 +77,16 @@ h1, h2, h3, h4, h5 , h6, a, span {
     display: flex;
     align-items: center;
 }
+
+#profile-photo{
+    width:35px;
+    height:35px;
+    background: #6b7280;
+    border-radius:30px;
+}
+#profile-photo img{
+    margin: 3.5px 0 0 3.5px;
+}
 .dropdown-content {
     display: none;
     position: absolute;
@@ -247,6 +257,32 @@ h1, h2, h3, h4, h5 , h6, a, span {
     font-weight: 600;
     border-radius: 6px;
 }
+{% comment %} Title Gradient {% endcomment %}
+.gradient {
+    background: linear-gradient(to right, rgb(252, 74, 26), rgb(247, 183, 51));
+    background-clip: text;
+    -webkit-background-clip: text;
+  
+    /* Adicionado: */
+    -webkit-text-fill-color: transparent;
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+{% comment %} Edit Profile {% endcomment %}
+#edit-profile{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+#edit-profile p{
+    color: #1f2937;
+    font-size: 18px;
+}
+
+
 
 @media(max-width: 870px){
     #content {
