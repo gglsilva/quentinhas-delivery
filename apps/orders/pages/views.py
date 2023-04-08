@@ -8,7 +8,7 @@ from apps.shop.models import Product, Category
 from apps.account.models import Profile
 from apps.orders.tasks import order_created
 from ..utils import arrange_order
-
+from datetime import date
 
 # Create your views here.
 # def order_create(request):
@@ -166,3 +166,12 @@ def action_ajax_create_order(request):
                                  quantity=quantity)
 
     return HttpResponse("success!")
+
+
+def action_print_report_orders(request):
+    orders = Order.objects.all().filter(created=date.today())
+    with open('pedidos.txt', 'w') as pd:
+        for order in orders:
+            pd.writelines(f'{order.client} - {order.get_product_for_order} - {order.note} \n')
+
+    return HttpResponse()

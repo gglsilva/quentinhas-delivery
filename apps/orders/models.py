@@ -13,7 +13,7 @@ class Order(models.Model):
         blank=True,
         null=True
     )
-    created = models.DateTimeField(
+    created = models.DateField(
         auto_now_add=True
     )
     updated = models.DateTimeField(
@@ -89,11 +89,3 @@ class OrderItem(models.Model):
     def get_produt_quantity(self):
         return f'{self.product.name} + {self.quantity}'
     
-    def add_item_in_order(self, order, item, price=None, quantity=None):
-        if item != None:
-            print(item)
-            print(Product.objects.filter(name__icontains=item))
-        # OrderItem.objects.create(order=order,
-        #                              product=produto,
-        #                              price=price,
-        #                              quantity=quantity)

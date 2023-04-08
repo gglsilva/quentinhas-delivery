@@ -21,41 +21,61 @@
             left: 0;
         }
         .dash-main {
-            background-color: #343a40;
+            /* background-color: #343a40; */
             margin-left: 16rem;
             overflow: hidden;
             padding: 1.2rem;
             min-height: 100vh;
+        } 
+        #tabela-listar{
+            background-color: white;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            /* background-color: white; */
+        }
+        thead{
+            background-color: orange;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #8b8a8a;
+        }
+        #data:hover {
+            background-color: #f5f5f5
+        }
+        #data:nth-child(even) {
+            background-color: #c5c5c5
         }
     </style>
     <div class="sidebar"></div>
     <div class="dash-main">
-
-        <table id="tabela-listar">
-            <thead>
-                <tr>
-                    <th>Cliente</th>
-                    <th>Data</th>
-                    <th>Produtos</th>
-                </tr>
-            </thead>
-            
-            <tbody>
-                {% for order in orders %}
-                <tr>
-                    <td>{{ order.client }}</td>
-                    <td>{{ order.created }}</td>
-                    <td>{{ order.get_product_for_order }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <!-- {% for order in orders %}
-            <ul>
-                <li>{{ order.client }} - {{ order.product }}</li>
-            </ul>
-            
-        {% endfor %} -->
+        <div>
+            <table id="tabela-listar">
+                <thead>
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Data</th>
+                        <th>Produtos</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    {% for order in orders %}
+                    <tr id="data">
+                        <td>{{ order.client }}</td>
+                        <td>{{ order.created }}</td>
+                        <td>{{ order.get_product_for_order }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <a type="button" href="{% url 'orders:action_print_report_orders' %}">Relatorio do dia </a>
+        </div>
     </div>
 
 
@@ -64,9 +84,27 @@
     <script src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.3/datatables.min.js"></script>
     <script>
         $(document).ready(function(){
-
-            $("#tabela-listar").DataTable();
-
+            $("#tabela-listar").DataTable({
+                "oLanguage": {
+                    "sProcessing":   "Processando...",
+                    "sLengthMenu":   "Mostrar _MENU_ registros",
+                    "sZeroRecords":  "Não foram encontrados resultados",
+                    "sInfo":         "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                    "sInfoEmpty":    "Mostrando de 0 até 0 de 0 registros",
+                    "sInfoFiltered": "",
+                    "sInfoPostFix":  "",
+                    "sSearch":       "Buscar:",
+                    "sUrl":          "",
+                    "oPaginate": {
+                        "sFirst":    "Primeiro",
+                        "sPrevious": "Anterior",
+                        "sNext":     "Seguinte",
+                        "sLast":     "Último"
+                    }
+                }
+            });
         });
+
+        
     </script>
 {% endblock %}
