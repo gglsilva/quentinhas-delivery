@@ -37,6 +37,9 @@
           <form class="form-shop" action="{% url "cart:cart_add_list" product.id %}" method="post">
             {{ cart_product_form }}
             {% csrf_token %}
+            <!-- <a class="add-product" onclick="addToCart('{{ product.slug }}')">
+              <i class="fas fa-plus btn-add-cart"></i>
+            </a> -->
             <input id="product-cart-add" type="submit" value="Adicionar">
           </form>
           <!-- ${{ product.price }} -->
@@ -44,4 +47,10 @@
       {% endfor %}
     </div>
   </div>
+  <script>
+    function addToCart(slug){
+      console.log(slug)
+      }
+  </script>
+
 {% endblock shop %}

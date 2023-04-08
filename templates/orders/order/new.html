@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'base/css/new-order.css' %}">
+    <title>Novo Pedido</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-brand">
+                <img id="logo-img" src="{% static 'base/img/logo-quentinhas-da-lu.png' %}" alt="">
+                <span id="brand-title">Quentinhas</span>
+            </div>
+        </nav>
+        <div class="banner">
+            <img id="banner-img" src="{% static 'base/img/santa-branca-slide-rotisserie.png' %}" alt="">
+        </div>
+    </header>
+    <main>
+        <section class="product-section">
+            <div class="opcao">
+                <h3 class="pri-title">Opcões*</h3>
+                {% for opcao in opcoes %}
+                    <div class="product-select">
+                        <input id="checkboxes" type="checkbox" value="{{ opcao.slug }}">
+                        <label class="product-item">{{ opcao.name }}</label>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+        <section class="product-section">
+            <div class="acompanhamento">
+                <h3 class="pri-title">Acompanhamentos*</h3>
+                {% for acompanhamento in acompanhamentos %}
+                    <div class="product-select">
+                        <input id="checkboxes" type="checkbox" value="{{ acompanhamento.slug }}">
+                        <label class="product-item">{{ acompanhamento.name }}</label>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+        <section id="confirm-section">
+            <h3 class="pri-title">Observação</h3>
+            <div class="observacao">
+                <label for="">Mensagem:</label>
+                <textarea id="msg" name="msg" rows="4" cols="50"></textarea>
+            </div>
+            <div class="client">
+                <label for="">Seu nome:</label>
+                <select name="client" id="select-client">
+                    {% for profile in profiles %}
+                        <option value="{{ profile }}">{{ profile }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="button" id="confirm-order" onclick="saveContent()">Confirmar perdido</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <div id="copy">
+            <p>Desenvolvido por <a href="www.linkedin.com/in/gabriellucasgs">Gabriel Lucas</a> &copy; 2023</p>
+        </div>
+    </footer>
+   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+    <script>
+        var mensagem = function(){
+            return document.getElementById('msg').value
+        }
+        var cliente = function(){
+            var select = document.getElementById('select-client');
+            var userSelect = select.options[select.selectedIndex].value;
+            return userSelect
+        }
+        
+        var recuperaCheckbox = function() {
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+            var quentinha = new Array()
+            for (var checkbox of checkboxes) {
+                quentinha.push(checkbox.value)
+            }
+            return quentinha
+        }
+        function desmarcaCheckbox() {
+            var inputs = $('input[type=checkbox]');
+            inputs.attr('checked', false);
+            inputs.prop('checked', false);
+        }
+            
+        function saveContent() { 
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+            var quentinha = new Array()
+            for (var checkbox of checkboxes) {
+                quentinha.push(checkbox.value)
+            }
+            $.ajax({
+                type: "POST",
+                url: "{% url 'orders:action_ajax_create_order' %}",
+                data: {
+                    produtos:quentinha,
+                    cliente: cliente,
+                    msg: mensagem,
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                },
+                success : function(data){
+                    if (data['response'] == 'success'){
+                        console.log(data['response']) 
+                    }                 
+                },
+                error: function(error){
+                    console.log('error: ' + error) //exibe na aba console do navegador
+                    //ou
+                    alert('error: ' + error) //exibe janela de texto
+                },
+                complete: function (jqXHR, textStatus) {
+                    desmarcaCheckbox()
+                    const msg = document.getElementById('msg').value = "";
+                    alert('Obrigado pelo seu pedido!')
+                }
+            })
+        }
+    </script>
+</body>
+</html>

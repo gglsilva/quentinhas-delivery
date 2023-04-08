@@ -5,15 +5,62 @@
 {% block title %}Edite sua conta{% endblock %}
 
 {% block content %}
+    <style>
+        {% comment %} Edit Profile {% endcomment %}
+        #edit-profile{
+            display: flex;
+            flex-direction: column;
+            margin: 0 auto;
+            padding: 30px;
+            width: 50vw;
+            background-color: #1f2937;
+            margin-top: 10vh;
+        }
+        #edit-profile p, h1{
+            font-size: 20px;
+            text-align: center;
+            color: white;
+        }
+        .form-edit{
+            display: flex;
+            flex-direction: column;
+            font-family: 'Ubuntu', sans-serif; font-weight:normal;
+            font-size: 20px;
+            color: white;
+            align-items: start;
+            margin: 0 10%;
+        }
+        
+        #id_first_name,
+        #id_last_name,
+        #id_email{
+            margin: 0 0 8px 0;
+            padding: 0;
+            background-color: transparent;
+            border: none;
+            font-size: large;
+            margin: 0.5rem 0 1rem 0;
+            width: 40vw ;
+            border-bottom: 1px solid #f1f5f9;
+            outline: none;
+            color:#f1f5f9;
+        }
+        #profile-edit{
+            display: flex;
+        }
+
+    </style>
     
     <div id="edit-profile">
         <h1 class="gradient">Edite sua conta</h1>
-        <p>Você pode editar sua conta usando o seguinte formulário:</p>
+        <p id="subtitle">Você pode editar sua conta usando o seguinte formulário:</p>
         <form class="form-edit"method="post" enctype="multipart/form-data">
-            {{ user_form|crispy }}
-            {{ profile_form|crispy }}
+            {{ user_form }}
+            <div id="profile-edit">
+                {{ profile_form.as_p }}
+            </div>
             {% csrf_token %}
-            <p><input type="submit" value="Salvar modificação"></p>
+            <button class="btn-submit" type="submit">Salvar modificações</button>
         </form>
     </div>
 {% endblock %}

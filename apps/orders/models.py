@@ -88,3 +88,12 @@ class OrderItem(models.Model):
     @property
     def get_produt_quantity(self):
         return f'{self.product.name} + {self.quantity}'
+    
+    def add_item_in_order(self, order, item, price=None, quantity=None):
+        if item != None:
+            print(item)
+            print(Product.objects.filter(name__icontains=item))
+        # OrderItem.objects.create(order=order,
+        #                              product=produto,
+        #                              price=price,
+        #                              quantity=quantity)

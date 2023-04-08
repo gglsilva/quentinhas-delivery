@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from ..forms import UserRegistrationForm, UserEditForm, ProfileEditForm
 # from actions.utils import create_action
+from django.contrib import messages
+from time import sleep
 from apps.account.models import Profile
 
 
@@ -45,7 +47,7 @@ def edit(request):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-        
+            return redirect('shop:product_list')     
     else:
         user_form = UserEditForm(
             instance=request.user

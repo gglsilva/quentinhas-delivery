@@ -239,6 +239,10 @@ h1, h2, h3, h4, h5 , h6, a, span {
 
 .form-shop{
     margin-top:10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
 }
 
 .form-shop label {
@@ -246,7 +250,17 @@ h1, h2, h3, h4, h5 , h6, a, span {
 }
 
 #id_quantity{
-    margin: 0 15px;
+    {% comment %} border: transparent; {% endcomment %}
+    color: #F24405;
+    font-size: large;
+}
+
+.btn-add-cart{
+    color: white;
+    background-color:#F24405;
+    border-radius: 30px;
+    padding: 5px;
+    
 }
 
 #product-cart-add{
@@ -270,19 +284,23 @@ h1, h2, h3, h4, h5 , h6, a, span {
     text-transform: uppercase;
 }
 
-{% comment %} Edit Profile {% endcomment %}
-#edit-profile{
-    display: flex;
-    flex-direction: column;
+.btn-submit {
     margin: 0 auto;
+    text-align: center;
+    color: #F2f2f2;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: #f24f13;
+    width: 60%;
+    height: 100%;
+    border: none;
+    height: 2.5em;
 }
-
-#edit-profile p{
-    color: #1f2937;
-    font-size: 18px;
+  
+.btn-submit:hover {
+    background: transparent;
+    border: 3px solid #F24405;
 }
-
-
 
 @media(max-width: 870px){
     #content {

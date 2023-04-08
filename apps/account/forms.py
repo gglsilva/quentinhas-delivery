@@ -7,7 +7,7 @@ class UserRegistrationForm(forms.ModelForm):
                                 label='Password',
                                 widget=forms.PasswordInput)
     password2 = forms.CharField(
-                                label='Password',
+                                label='Password confirmação',
                                 widget=forms.PasswordInput)
     
     class Meta:
