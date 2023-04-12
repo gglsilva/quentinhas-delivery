@@ -26,7 +26,7 @@
                 <h3 class="pri-title">Opcões*</h3>
                 {% for opcao in opcoes %}
                     <div class="product-select">
-                        <input id="checkboxes" type="checkbox" value="{{ opcao.slug }}">
+                        <input id="checkboxes" type="checkbox" value="{{ opcao.id }}">
                         <label class="product-item">{{ opcao.name }}</label>
                     </div>
                 {% endfor %}
@@ -37,7 +37,7 @@
                 <h3 class="pri-title">Acompanhamentos*</h3>
                 {% for acompanhamento in acompanhamentos %}
                     <div class="product-select">
-                        <input id="checkboxes" type="checkbox" value="{{ acompanhamento.slug }}">
+                        <input id="checkboxes" type="checkbox" value="{{ acompanhamento.id }}">
                         <label class="product-item">{{ acompanhamento.name }}</label>
                     </div>
                 {% endfor %}

@@ -152,6 +152,7 @@ def action_ajax_create_order(request):
     quentinha = request.POST.getlist('produtos[]', None)
     cliente = request.POST.getlist('cliente', None)
     msg = request.POST.getlist('msg')
+    # print(quentinha)
     cart = arrange_order(quentinha)
     client = Profile.objects.get(user__username=cliente[0])
     order = Order.objects.create(client=client,
@@ -159,7 +160,10 @@ def action_ajax_create_order(request):
     price = 1
     quantity = 1
     for item in cart:
-        produto = Product.objects.get(slug__contains=item)
+        # produto = Product.objects.filter(slug__contains=item)
+        # print(f'{item} - {type(item)}')
+        produto = Product.objects.get(id=int(item))
+        # print(type(produto))
         OrderItem.objects.create(order=order,
                                  product=produto,
                                  price=price,
