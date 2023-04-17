@@ -8,7 +8,7 @@
 
 {% block content %}
     <style> 
-        .sidebar {
+        #sidebar {
             background-color: #343a40;
             overflow-y: auto;
             overflow-x: hidden;
@@ -20,7 +20,7 @@
             top: 0;
             left: 0;
         }
-        .dash-main {
+        #main {
             /* background-color: #343a40; */
             margin-left: 16rem;
             overflow: hidden;
@@ -34,6 +34,9 @@
             border-collapse: collapse;
             width: 100%;
             /* background-color: white; */
+        }
+        label{
+            color: white;
         }
         thead{
             background-color: orange;
@@ -49,9 +52,14 @@
         #data:nth-child(even) {
             background-color: #c5c5c5
         }
+        .dataTables_wrapper, .dataTables_length ,label{
+            color: white !important;
+        }
     </style>
-    <div class="sidebar"></div>
-    <div class="dash-main">
+    
+    <div id="sidebar"></div>
+
+    <div id="main">
         <div>
             <table id="tabela-listar">
                 <thead>
@@ -104,7 +112,5 @@
                 }
             });
         });
-
-        
     </script>
 {% endblock %}

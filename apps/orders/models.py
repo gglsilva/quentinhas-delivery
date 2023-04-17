@@ -57,7 +57,7 @@ class Order(models.Model):
 
     @property
     def get_product_for_order(self):
-        return ''.join(f'{item.product.name} ' for item in self.items.all())
+        return [item.product.name for item in self.items.all()]
 
 
 class OrderItem(models.Model):
