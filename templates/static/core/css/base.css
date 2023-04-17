@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-wrap: wrap;
+	flex: 1 1 100vw;
+	margin: 3px;
+}
+
+#container{
+	display: flex;
+	flex-direction: row;
+	width: 100vw;
+	height: 100vh;
+	background-color: #373434;
+}
