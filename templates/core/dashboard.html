@@ -112,6 +112,7 @@
     tbody {
         color: white;
     }
+
     th, td {
         padding: 5px;
         text-align: left;
@@ -120,6 +121,12 @@
     #data:hover {
         background-color: #f5f5f5;
         color: #2c2b2b;
+    }
+    .dataTables_filter label {
+        color: #ffffff; /* Substitua pela cor desejada */
+    }
+    .dataTables_info {
+        color: #fafafa; /* Substitua pela cor desejada */
     }
 </style>
 <div id="sidebar">
@@ -189,13 +196,14 @@
 <script>
     $(document).ready(function(){
         $("#tabela-listar").DataTable({
+            "order": [[ 1, "dsc" ]],
             lengthMenu: [
                 [5, 10, 15, -1],
                 [5, 10, 15, 'All'],
             ],
             "oLanguage": {
                 "sProcessing":   "Processando...",
-                "sLengthMenu":   "Mostrar _MENU_ registros",
+                "sLengthMenu":   "_MENU_ Registros",
                 "sZeroRecords":  "Não foram encontrados resultados",
                 "sInfo":         "Mostrando de _START_ até _END_ de _TOTAL_ registros",
                 "sInfoEmpty":    "Mostrando de 0 até 0 de 0 registros",
