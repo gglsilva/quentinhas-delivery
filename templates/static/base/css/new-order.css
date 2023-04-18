@@ -190,3 +190,17 @@ footer p{
 footer a{
     color: #F78900;
 }
+
+.coluna {
+    float: left;
+    width: 33.33%; /* Define a largura da coluna, ajuste conforme necessário */
+    box-sizing: border-box;
+    padding: 0 15px; /* Adicione margem interna se necessário */
+}
+
+/* Limpa o float */
+.row::after {
+    content: "";
+    display: table;
+    clear: both;
+}

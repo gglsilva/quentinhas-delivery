@@ -24,23 +24,33 @@
         <section class="product-section">
             <div class="opcao">
                 <h3 class="pri-title">Opcões*</h3>
-                {% for opcao in opcoes %}
-                    <div class="product-select">
-                        <input id="checkboxes" type="checkbox" value="{{ opcao.id }}">
-                        <label class="product-item">{{ opcao.name }}</label>
+                <div class="row"></div>
+                    {% for opcao in opcoes %}
+                    <div class="coluna">
+                        <!-- Renderize os dados na coluna atual -->
+                        <div class="product-select">
+                            <input id="checkboxes" type="checkbox" value="{{ opcao.id }}">
+                            <label class="product-item">{{ opcao.name }}</label>
+                        </div>
                     </div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
             </div>
         </section>
         <section class="product-section">
             <div class="acompanhamento">
                 <h3 class="pri-title">Acompanhamentos*</h3>
-                {% for acompanhamento in acompanhamentos %}
-                    <div class="product-select">
-                        <input id="checkboxes" type="checkbox" value="{{ acompanhamento.id }}">
-                        <label class="product-item">{{ acompanhamento.name }}</label>
-                    </div>
-                {% endfor %}
+                <div class="row"></div>
+                    {% for acompanhamento in acompanhamentos %}
+                        <div class="coluna">
+                            <!-- Renderize os dados na coluna atual -->
+                            <div class="product-select">
+                                <input id="checkboxes" type="checkbox" value="{{ acompanhamento.id }}">
+                                <label class="product-item">{{ acompanhamento.name }}</label>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
         </section>
         <section id="confirm-section">
