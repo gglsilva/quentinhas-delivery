@@ -25,6 +25,7 @@ prompt-toolkit==3.0.37
 python-decouple==3.7
 pytz==2022.7.1
 PyYAML==6.0
+reportlab==3.6.12
 six==1.16.0
 sqlparse==0.4.3
 vine==5.0.0

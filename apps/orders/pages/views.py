@@ -7,7 +7,9 @@ from apps.shop.models import Product, Category
 from apps.account.models import Profile
 from ..utils import arrange_order, format_product_list
 from datetime import date
-
+from django.template.loader import get_template
+from django.template import Context
+from reportlab.pdfgen import canvas
 
 def order_create(request):
     cart = Cart(request)
@@ -77,6 +79,6 @@ def action_print_report_orders(report):
             list_product = format_product_list(order.get_product_for_order)
             # pd.writelines(f'{order.client} - {order.get_product_for_order} - {order.note} \n')
             pd.writelines(f'{order.client} - {list_product} - {order.note} \n')
+        response = pd
 
-
-    return HttpResponse()
+    return response

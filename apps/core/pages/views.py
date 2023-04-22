@@ -8,6 +8,7 @@ class Home(TemplateView):
     template_name = "core/index.html"
 
 def report_day(request):
+    # template_name = "core/index.html"
     template_name = "core/dashboard.html"
     orders = Order.objects.all()
     context = {
