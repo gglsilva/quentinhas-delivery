@@ -1,0 +1,33 @@
+<html lang="pt">
+<head>
+    <title>Document</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h2>Pedidos do Dia {{ today }}</h2>
+    <hr>
+    <table id="tabela-listar">
+        <thead>
+            <tr>
+                <th>Cliente</th>
+                <th>Produtos</th>
+                <th>Observação</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            {% for order in orders %}
+            <tr id="data">
+                <td>{{ order.client }}</td>
+                <td>{{ order.get_product_for_order }}</td>
+                <td>{{ order.note }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

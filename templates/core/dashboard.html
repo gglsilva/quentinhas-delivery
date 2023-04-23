@@ -28,12 +28,24 @@
             <h2 class="sec-title">Categorias</h2>
         </div>
         <nav id="menu-sidebar">
-            <li>Principal</li>
-            <li>Menu do Dia</li>
-            <li>Produtos</li>
-            <li>Ordens</li>
-            <li>Contas</li>
-            <li>Configurações</li>
+            <li>
+                <a href="#">Principal</a>
+            </li>
+            <li>
+                <a href="#">Menu do Dia</a> 
+            </li>
+            <li>
+                <a href="">Produtos</a> 
+            </li>
+            <li> 
+                <a href="">Ordens</a> 
+            </li>
+            <li> 
+                <a href="">Contas</a> 
+            </li>
+            <li> 
+                <a href="">Configurações</a>
+            </li>
         </nav>
     </div>
 </div>
@@ -78,8 +90,12 @@
                 <a id="btn-download" title="Relatório" href="{% url "orders:action_print_report_orders" %}">
                     <i id="icon-download" class="far fa-file-pdf"></i>
                 </a>
+
+                <a id="btn-download" title="im" href="{% url "core:extract_productd_image" %}">
+                    <i id="icon-download" class="far fa-file-pdf"></i>
+                </a>
+
             </div>
-            
             <table id="tabela-listar">
                 <thead>
                     <tr>

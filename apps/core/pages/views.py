@@ -2,6 +2,8 @@ from django.shortcuts import render, HttpResponse
 from django.views.generic.base import TemplateView
 from datetime import date
 from apps.orders.models import Order
+from PIL import Image
+import pytesseract
 
 # Create your views here.
 class Home(TemplateView):
@@ -15,3 +17,14 @@ def report_day(request):
         'orders': orders
     }
     return render(request, template_name, context)
+
+
+# def extract_productd_image(request):
+#     if request.method == 'POST':
+#         imagem = request.FILES['imagem']
+    # imagem = Image.open()
+    # texto = pytesseract.image_to_string(imagem)
+
+    # print(texto)
+    # with open('texto_extraido.txt', 'w') as arquivo:
+    #     arquivo.write(texto)   

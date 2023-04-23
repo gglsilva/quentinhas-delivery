@@ -88,7 +88,6 @@
   height: auto;
   width: 100vw;
   padding: 15px;
-  /* background-color: #2c2b2b; */
 }
 /* Card info */
 .card-info {
@@ -128,9 +127,12 @@
   align-items: center;
 }
 #btn-download {
-  background-color: #dd8706;
+  background-color: #ebac4f;
   padding: 5px 12px;
   border-radius: 5px;
+}
+#btn-download:hover {
+  background-color: #dd8706;
 }
 #icon-download {
   align-items: center;
@@ -150,7 +152,6 @@
   text-transform: uppercase;
   margin: 0;
 }
-
 .text {
   font-size: 20px;
   color: white;
@@ -211,4 +212,17 @@ label {
   color: #fff;
   border-color: #4d4d4d;
   background-color: #4d4d4d;
+}
+#menu-sidebar a{
+    color: white;
+    text-decoration: none;
+}
+#menu-sidebar li{
+    padding: 5px;
+}
+#menu-sidebar li:hover{
+    background-color: #0b9439;
+    border-radius: 5px;
+    padding: 5px 10px;
+    transition: .4s;
 }

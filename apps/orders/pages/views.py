@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseServerError
+from django.http import HttpResponse, HttpResponseServerError, FileResponse
 from ..models import Order, OrderItem
 from ..forms import OrderCreateForm
 from apps.cart.cart import Cart
@@ -9,7 +9,11 @@ from ..utils import arrange_order, format_product_list
 from datetime import date
 from django.template.loader import get_template
 from django.template import Context
-from reportlab.pdfgen import canvas
+
+from django.core.files.storage import FileSystemStorage
+from django.template.loader import render_to_string
+from weasyprint import HTML
+
 
 def order_create(request):
     cart = Cart(request)
@@ -72,13 +76,18 @@ def action_ajax_create_order(request):
     return HttpResponse("success!")
 
 
-def action_print_report_orders(report):
-    orders = Order.objects.all().filter(created=date.today())
-    with open('pedidos.txt', 'w') as pd:
-        for order in orders:
-            list_product = format_product_list(order.get_product_for_order)
-            # pd.writelines(f'{order.client} - {order.get_product_for_order} - {order.note} \n')
-            pd.writelines(f'{order.client} - {list_product} - {order.note} \n')
-        response = pd
+def action_print_report_orders(request):
+    today = date.today()
+    orders = Order.objects.filter(created=date.today())
+    html_string = render_to_string('core/pdf.html', {'orders': orders,
+                                                     'today': today})
 
+    html = HTML(string=html_string)
+    html.write_pdf(target='/tmp/relatorio.pdf')
+
+    fs = FileSystemStorage('/tmp')
+
+    with fs.open('relatorio.pdf') as pdf:
+        response = HttpResponse(pdf, content_type='application/pdf')
+        response['Content-Disposition'] = 'attachment; filename="relatorio.pdf"'
     return response
