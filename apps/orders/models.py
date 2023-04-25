@@ -30,7 +30,11 @@ class Order(models.Model):
 
     @property
     def get_product_for_order(self):
-        return [item.product.name for item in self.items.all()]
+        return ''.join(f'{item.product.name}, ' for item in self.items.all())
+    
+    @property
+    def return_note_with_string(self):
+        return f'{self.note}' if self.note else ''
 
 
 class OrderItem(models.Model):

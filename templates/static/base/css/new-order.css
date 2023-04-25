@@ -21,7 +21,8 @@ header {
 }
 
 nav{
-    background-color: black;
+    background-color: #1f2937;
+    border-bottom: 5px solid #6e6a65;
     width: 100%;
 }
 
@@ -71,7 +72,7 @@ section {
 
 .pri-title {
     color: white;
-    background-color: rgb(85, 84, 84);
+    background-color: #1f2937;
     width: 100%;
     padding: 10px;
     border-radius: 6px;
@@ -172,9 +173,9 @@ section {
 /* footer */
 footer{
     display: flex;
-    background-color: #000;
-    height: 6em;
-    border-top: 10px solid #72716f;
+    background-color: #1f2937;
+    height: 5em;
+    border-top: 5px solid #a7a5a2;
 }
 #copy{
     margin: 0 auto;

@@ -107,7 +107,7 @@
                         <td>{{ order.client }}</td>
                         <td>{{ order.created }}</td>
                         <td>{{ order.get_product_for_order|truncatechars:50 }}</td>
-                        <td>{{ order.note }}</td>
+                        <td>{{ order.return_note_with_string }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

@@ -24,7 +24,7 @@
         <section class="product-section">
             <div class="opcao">
                 <h3 class="pri-title">Opcões*</h3>
-                <div class="row"></div>
+                <div class="row">
                     {% for opcao in opcoes %}
                     <div class="coluna">
                         <!-- Renderize os dados na coluna atual -->
@@ -40,7 +40,7 @@
         <section class="product-section">
             <div class="acompanhamento">
                 <h3 class="pri-title">Acompanhamentos*</h3>
-                <div class="row"></div>
+                <div class="row">
                     {% for acompanhamento in acompanhamentos %}
                         <div class="coluna">
                             <!-- Renderize os dados na coluna atual -->
@@ -58,14 +58,6 @@
             <div class="observacao">
                 <label for="">Mensagem:</label>
                 <textarea id="msg" name="msg" rows="4" cols="50"></textarea>
-            </div>
-            <div class="client">
-                <label for="">Seu nome:</label>
-                <select name="client" id="select-client">
-                    {% for profile in profiles %}
-                        <option value="{{ profile }}">{{ profile }}</option>
-                    {% endfor %}
-                </select>
             </div>
             <button type="button" id="confirm-order" onclick="saveContent()">Confirmar perdido</button>
         </section>
@@ -115,7 +107,7 @@
                 url: "{% url 'orders:action_ajax_create_order' %}",
                 data: {
                     produtos:quentinha,
-                    cliente: cliente,
+                    cliente: '{{ user }}',
                     msg: mensagem,
                     csrfmiddlewaretoken: '{{ csrf_token }}',
                 },
@@ -123,6 +115,7 @@
                     if (data['response'] == 'success'){
                         console.log(data['response']) 
                     }                 
+                    alert('Obrigado pelo seu pedido!')
                 },
                 error: function(error){
                     console.log('error: ' + error) //exibe na aba console do navegador
@@ -132,7 +125,7 @@
                 complete: function (jqXHR, textStatus) {
                     desmarcaCheckbox()
                     const msg = document.getElementById('msg').value = "";
-                    alert('Obrigado pelo seu pedido!')
+                    // alert('Obrigado pelo seu pedido!')
                 }
             })
         }
