@@ -152,7 +152,7 @@ STATIC_ROOT = os.path.join('static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(ASSETS_MEDIA_DIR, 'media')  # project/media
 
-LOGIN_REDIRECT_URL = 'shop:product_list'
+LOGIN_REDIRECT_URL = 'orders:new_order'
 LOGIN_URL = 'account:login'
 
 # Default primary key field type

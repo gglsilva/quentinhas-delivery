@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseServerError, FileResponse
+from django.http import HttpResponse, HttpResponseServerError
 from ..models import Order, OrderItem
 from ..forms import OrderCreateForm
 from apps.cart.cart import Cart
@@ -7,12 +7,14 @@ from apps.shop.models import Product, Category
 from apps.account.models import Profile
 from ..utils import arrange_order, format_product_list
 from datetime import date
-from django.template.loader import get_template
+# from django.template.loader import get_template
 from django.template import Context
 
 from django.core.files.storage import FileSystemStorage
 from django.template.loader import render_to_string
 from weasyprint import HTML
+from django.contrib.auth.decorators import login_required
+
 
 
 def order_create(request):
@@ -39,6 +41,7 @@ def order_create(request):
     return render(request, 'orders/order/create.html', 
                            {'cart':cart, 'form': form})                        
 
+@login_required
 def new_order(request, category_slug=None):
     categories = Category.objects.all()
     acompanhamento = Product.objects.filter(available=True, category=categories[0])
