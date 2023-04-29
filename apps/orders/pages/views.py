@@ -94,3 +94,7 @@ def action_print_report_orders(request):
         response = HttpResponse(pdf, content_type='application/pdf')
         response['Content-Disposition'] = 'attachment; filename="relatorio.pdf"'
     return response
+
+def order_created(request):
+    template_name = "orders/order/created.html"
+    return render(request, template_name)

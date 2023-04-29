@@ -38,11 +38,17 @@
       color: #222;
     }
 
+    a {
+      text-decoration: none;
+      color: rgb(252, 74, 26);
+    }
 
   </style>
     <div class="create-order">
       <h1 class="gradient">Obrigado</h1>
-      <p>Seu pedido foi concluído com êxito. O número do seu pedido é
-      <strong>{{ order.id }}</strong>.</p>
+      <p>Seu pedido foi concluído com êxito. Fazer
+        <a href="{% url 'orders:new_order' %}">novo pedido</a>.
+        <a href="{% url 'shop:product_list' %}">página inicial</a>
+      </p>
     </div>
 {% endblock %}

@@ -7,7 +7,7 @@
 
 body {
     font-size: 100%;
-    background: white
+    background: #e5e7eb;
 }
 
 header, nav, .nav-brand, .banner, .product-select, #logo-img{
@@ -21,8 +21,8 @@ header {
 }
 
 nav{
-    background-color: #1f2937;
-    border-bottom: 5px solid #6e6a65;
+    background-color: #151F30;
+    border-bottom: 4px solid #F24405;
     width: 100%;
 }
 
@@ -59,6 +59,7 @@ main {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    margem-bottom: 1em;
 }
 section {
     margin: 0 4em;
@@ -72,7 +73,7 @@ section {
 
 .pri-title {
     color: white;
-    background-color: #1f2937;
+    background-color: #151F30;
     width: 100%;
     padding: 10px;
     border-radius: 6px;
@@ -173,8 +174,9 @@ section {
 /* footer */
 footer{
     display: flex;
-    background-color: #1f2937;
+    background-color: #151F30;
     height: 5em;
+    margin-top: 2em;
     border-top: 5px solid #a7a5a2;
 }
 #copy{

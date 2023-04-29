@@ -7,15 +7,14 @@ class Profile(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE
     )
-    # date_of_birth = models.DateField(
-    #     blank=True,
-    #     null=True
-    # )
     photo = models.ImageField(
         upload_to='users/%y/%m/%d', 
         blank=True
     )
-    ativo = models.BooleanField(
+    is_admin = models.BooleanField(
+        default=False,
+    )
+    is_active = models.BooleanField(
         default=True
     )
 

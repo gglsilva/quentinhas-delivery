@@ -95,7 +95,10 @@
             inputs.attr('checked', false);
             inputs.prop('checked', false);
         }
-            
+        function redirecionaCliente(){
+            window.location="{% url 'orders:order_created' %}"
+        }
+
         function saveContent() { 
             var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
             var quentinha = new Array()
@@ -125,6 +128,7 @@
                 complete: function (jqXHR, textStatus) {
                     desmarcaCheckbox()
                     const msg = document.getElementById('msg').value = "";
+                    redirecionaCliente();
                     // alert('Obrigado pelo seu pedido!')
                 }
             })
