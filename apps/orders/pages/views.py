@@ -54,12 +54,14 @@ def new_order(request, category_slug=None):
         'profiles': profiles,
     }
         
-    return render(request, 'orders/order/new.html', context)
+    return render(request, 'orders/order/new2.html', context)
 
 
 def action_ajax_create_order(request):
     if request.method != 'POST':
+        print('Aqui')
         return HttpResponseServerError()
+    print("Aqui 2")
     quentinha = request.POST.getlist('produtos[]', None)
     cliente = request.POST.getlist('cliente', None)
     msg = request.POST.getlist('msg')

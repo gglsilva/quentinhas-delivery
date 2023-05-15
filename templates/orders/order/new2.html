@@ -1,0 +1,194 @@
+{% load static %}
+{% load thumbnail %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{% static 'base/css/new_order_2.css' %}" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+    crossorigin="anonymous"></script>
+  <title>Novo Pedido</title>
+</head>
+
+<body>
+  <header>
+    <!-- Navbar -->
+    <div class="header">
+      <a href="#" id="logo">
+        <img id="logo-img" src="{% static 'base/img/logo-quentinhas-da-lu.png' %}" alt="">
+        <!-- <span id="logo-text">Quentinhas da Lu</span> -->
+      </a>
+      <!-- Agrupa links de navegação no site. -->
+      <nav id="menu">
+        <div class="dropdown">
+          <a href="#" id="menu-dashboard">
+            <p>Olá, {{ user }}</p>
+            {% if user.profile.photo %}
+            <div id="profile-photo">
+              <img id="profile-img" src="{% thumbnail user.profile.photo 30x30 %}" alt="">
+            </div>
+            {% else %}
+            <i class="fas fa-user"></i>
+            {% endif %}
+          </a>
+          <div class="dropdown-content">
+            {% if user.is_staff %}
+            <a href="{% url 'core:report_day' %}">Administração</a>
+            {% endif %}
+            <a href="{% url 'account:edit' %}">Editar Perfil</a>
+            <a href="{% url 'account:password_change' %}">Redefinir Senha</a>
+            <a href="{% url 'account:logout' %}">Logout</a>
+          </div>
+        </div>
+        <a href="#" id="menu-cart">
+          {% with total_items=cart|length %}
+          {% if total_items > 0 %}
+          <a href="{% url " cart:cart_detail" %}">
+            <i class="fas fa-shopping-cart" id="shopping-cart"></i>
+            <span id="qtde-itens">{{ total_items }}</span>
+          </a>
+          {% endif %}
+          {% endwith %}
+        </a>
+      </nav>
+    </div>
+  </header>
+  <main>
+      <section class="product-section">
+          <div class="opcao">
+              <h3 class="pri-title">Opcões*</h3>
+              <div class="linha">
+                  {% for opcao in opcoes %}
+                  <div class="coluna">
+                      <!-- Renderize os dados na coluna atual -->
+                      <div class="product-select">
+                          <input id="checkboxes" type="checkbox" value="{{ opcao.id }}">
+                          <label class="product-item">{{ opcao.name }}</label>
+                      </div>
+                  </div>
+                  {% endfor %}
+              </div>
+          </div>
+      </section>
+      <section class="product-section">
+          <div class="acompanhamento">
+              <h3 class="pri-title">Acompanhamentos*</h3>
+              <div class="linha">
+                  {% for acompanhamento in acompanhamentos %}
+                      <div class="coluna">
+                          <!-- Renderize os dados na coluna atual -->
+                          <div class="product-select">
+                              <input id="checkboxes" type="checkbox" value="{{ acompanhamento.id }}">
+                              <label class="product-item">{{ acompanhamento.name }}</label>
+                          </div>
+                      </div>
+                  {% endfor %}
+              </div>
+          </div>
+      </section>
+      <section id="confirm-section">
+          <h3 class="pri-title">Observação</h3>
+          <div class="observacao">
+            <div class="row">
+              <div class="col-md-3">
+                <label for="">Mensagem:</label>
+              </div>
+              <div class="col-md-9">
+                <textarea id="msg" name="msg" rows="2" cols="25"></textarea>
+              </div>
+            </div>
+          </div>
+          <button type="button" id="confirm-order" onclick="saveContent()">Confirmar perdido</button>
+      </section>
+  </main>
+  <footer class="footer">
+      <div id="copy-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 d-flex justify-content-center">
+                    <p class="mt-4">Desenvolvido por <a href="https://www.linkedin.com/in/gabriellucasgs" target="_blank">Gabriel Lucas</a> &copy; 2023</p>
+                </div>
+            </div>
+        </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+    crossorigin="anonymous">
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <!-- <script src="{ static 'base/js/newOrder.js'%}"></script> -->
+  <script>
+    var mensagem = function () {
+      return document.getElementById('msg').value
+    }
+    var cliente = function () {
+        var select = document.getElementById('select-client');
+        var userSelect = select.options[select.selectedIndex].value;
+        return userSelect
+    }
+
+    var recuperaCheckbox = function () {
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+        var quentinha = new Array()
+        for (var checkbox of checkboxes) {
+            quentinha.push(checkbox.value)
+        }
+        return quentinha
+    }
+    function desmarcaCheckbox() {
+        var inputs = $('input[type=checkbox]');
+        inputs.attr('checked', false);
+        inputs.prop('checked', false);
+    }
+    function redirecionaCliente() {
+        window.location = "{% url 'orders:order_created' %}"
+    }
+
+    function saveContent() {
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+        var quentinha = new Array()
+        for (var checkbox of checkboxes) {
+            quentinha.push(checkbox.value)
+        }
+        $.ajax({
+            type: "POST",
+            url: "{% url 'orders:action_ajax_create_order' %}",
+            data: {
+                produtos: quentinha,
+                cliente: '{{ user }}',
+                msg: mensagem,
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+            },
+            success: function (data) {
+                if (data['response'] == 'success') {
+                    console.log('Aqui')
+                    console.log(data['response'])
+                }
+                alert('Obrigado pelo seu pedido!')
+            },
+            error: function (error) {
+                console.log('error: ' + error) //exibe na aba console do navegador
+                //ou
+                alert('error: ' + error) //exibe janela de texto
+            },
+            complete: function (jqXHR, textStatus) {
+                desmarcaCheckbox()
+                const msg = document.getElementById('msg').value = "";
+                redirecionaCliente();
+                // alert('Obrigado pelo seu pedido!')
+            }
+        })
+    }
+  </script>
+    
+</body>
+
+</html>
